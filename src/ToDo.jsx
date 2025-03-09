@@ -41,7 +41,9 @@ export default function ToDo() {
         // move task up on the list according to user
         if (index > 0) {
             const updatedTasks = [...tasks]
-            [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]]
+            const temp = updatedTasks[index]
+            updatedTasks[index] = updatedTasks[index - 1]
+            updatedTasks[index - 1] = temp
             setTasks(updatedTasks)
         }
     }
@@ -50,7 +52,9 @@ export default function ToDo() {
         // move task down on the list according to user
         if (index < tasks.length - 1) {
             const updatedTasks = [...tasks]
-            [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]]
+            const temp = updatedTasks[index]
+            updatedTasks[index] = updatedTasks[index + 1]
+            updatedTasks[index + 1] = temp
             setTasks(updatedTasks)
         }
     }
