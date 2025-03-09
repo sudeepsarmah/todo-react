@@ -19,7 +19,7 @@ export default function ToDo() {
         }
 
     }
-    const handleRemoveTask = () => {
+    const handleRemoveTask = (index) => {
         // function to handle removal of tasks
         const updatedTasks = tasks.filter((_, i) => i !== index)
         setTasks(updatedTasks)
@@ -48,7 +48,7 @@ export default function ToDo() {
 
     const handleTaskDown = (index) => {
         // move task down on the list according to user
-        if (index < tasks.length) {
+        if (index < tasks.length - 1) {
             const updatedTasks = [...tasks]
             [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]]
             setTasks(updatedTasks)
@@ -65,9 +65,9 @@ export default function ToDo() {
                 <button className="add-task-btn" onClick={handleAddTask}>Add Task</button>
             </div>
             <ol>
-                {tasks.map((task, index) => {
+                {tasks.map((task, index) =>
                     <li key={index}>
-                        <span className="text">{task}</span>
+                        <span className="text">{task.title} {task.detail} {task.date}</span>
                         <button className="delete-btn" onClick={() => handleRemoveTask(index)}>
                             Remove
                         </button>
@@ -78,7 +78,7 @@ export default function ToDo() {
                             ⬇️
                         </button>
                     </li>
-                })}
+                )}
             </ol>
         </div>
     )
